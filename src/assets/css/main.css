@@ -344,14 +344,23 @@ p {
   margin: 0 auto;
 }
 
+/* Oversize the logo so the top sits over the green strip above and
+   the bottom hangs over the hero below — matches the original Elementor
+   layout where the mark bleeds into both adjacent regions. Negative
+   margins let the image overflow without forcing the header to grow. */
 .site-header__brand {
   display: flex;
   align-items: center;
+  z-index: 1;
 }
 
 .site-header__brand img {
-  width: 64px;
-  height: 64px;
+  width: clamp(140px, 18vw, 280px);
+  height: auto;
+  margin-top: clamp(-2.5rem, -3vw, -1.5rem);
+  margin-bottom: clamp(-5rem, -7vw, -3rem);
+  position: relative;
+  z-index: 2;
 }
 
 /* --- nav (CSS-only mobile toggle) ----------------------------------- */
