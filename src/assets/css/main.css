@@ -846,7 +846,7 @@ p {
   margin-bottom: 0.35rem;
 }
 
-.prose a {
+.prose a:not(.btn) {
   color: var(--color-accent);
   border-bottom: 1px solid currentcolor;
 }
