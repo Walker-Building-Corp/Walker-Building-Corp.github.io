@@ -1,0 +1,36 @@
+{
+  "name": "Walker Building Corporation",
+  "shortName": "Walker Building Corp",
+  "tagline": "Leader in Erosion Control & Stormwater Management",
+  "description": "Walker Building Corporation provides erosion control, BMP management, street sweeping, concrete washouts, and debris removal across central Florida.",
+  "url": "https://walkerbldgcorp.com",
+  "phone": "(352) 771-2651",
+  "phoneRaw": "+13527712651",
+  "email": "Info@WalkerBldgCorp.com",
+  "address": {
+    "street": "1079 Duck Box Rd",
+    "city": "Umatilla",
+    "state": "FL",
+    "zip": "32784",
+    "country": "US"
+  },
+  "geo": {
+    "lat": 28.9472,
+    "lng": -81.6664
+  },
+  "hours": {
+    "weekday": "Monday–Friday: 8AM to 4PM",
+    "weekend": "Saturday & Sunday: Closed",
+    "schemaSpec": "Mo,Tu,We,Th,Fr 08:00-16:00"
+  },
+  "locations": ["Umatilla", "Palm Coast", "Moore Haven"],
+  "nav": [
+    { "label": "Home", "url": "/" },
+    { "label": "About", "url": "/about/" },
+    { "label": "Services", "url": "/services/" },
+    { "label": "Equipment", "url": "/equipment/" },
+    { "label": "Careers", "url": "/careers/" },
+    { "label": "Contact", "url": "/contact/" }
+  ],
+  "social": []
+}

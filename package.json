@@ -1,0 +1,22 @@
+{
+  "name": "walker-building-corp",
+  "version": "1.0.0",
+  "description": "Walker Building Corporation — static site built with Eleventy and Tina CMS",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tinacms dev -c \"eleventy --serve\"",
+    "build": "tinacms build && eleventy",
+    "build:eleventy": "eleventy",
+    "clean": "rm -rf public tina/__generated__"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy-img": "^5.0.0",
+    "tinacms": "^2.2.0",
+    "@tinacms/cli": "^1.7.0"
+  }
+}

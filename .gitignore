@@ -1,0 +1,12 @@
+node_modules/
+public/
+.cache/
+tina/__generated__/
+.env
+.env.local
+.DS_Store
+*.log
+
+# Video assets are large (~280MB total). Track them with Git LFS or host externally.
+# Uncomment the next line if you'd rather not commit them at all and re-run the mirror script per deploy host.
+# src/assets/vendor/video/
