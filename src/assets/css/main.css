@@ -318,7 +318,10 @@ p {
   padding: 0.5rem var(--container-pad);
 }
 
-.site-header__strip a {
+/* All three strip items (address span, email link, phone link) lay out
+   their icon and text inline. Target direct children so both <a> and
+   <span> get the same alignment treatment. */
+.site-header__strip-inner > * {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
