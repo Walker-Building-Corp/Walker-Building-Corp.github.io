@@ -1,5 +1,5 @@
-{# Services card grid. Reads `collections.services` (sorted by `order`).
-   Section frontmatter: { type: "services-grid", heading: "...", intro: "..." } #}
+{# Services card grid. Each card is fully clickable and deep-links to its
+   anchor on the /services/ detail page. #}
 <section class="section section--alt">
   <div class="container">
     <header class="section__header">
@@ -19,9 +19,11 @@
             </div>
           {%- endif %}
           <div class="card__body">
-            <h3 class="card__title">{{ s.data.title }}</h3>
+            <h3 class="card__title">
+              <a class="card__cover-link" href="/services/#{{ s.fileSlug }}">{{ s.data.title }}</a>
+            </h3>
             <p class="card__desc">{{ s.data.summary }}</p>
-            <a class="card__link" href="/services/#{{ s.fileSlug }}">Learn more</a>
+            <span class="card__link" aria-hidden="true">Learn more</span>
           </div>
         </article>
       {%- endfor %}

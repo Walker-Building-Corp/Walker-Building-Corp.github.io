@@ -546,6 +546,7 @@ p {
 }
 
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   background: #fff;
@@ -557,7 +558,8 @@ p {
     box-shadow var(--transition);
 }
 
-.card:hover {
+.card:hover,
+.card:focus-within {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
@@ -588,6 +590,28 @@ p {
   text-transform: uppercase;
   margin: 0 0 0.5rem;
   color: var(--color-primary);
+}
+
+/* Cover link: the anchor text is the title, but the link's hit area
+   extends to cover the entire .card via ::after positioning. */
+.card__cover-link {
+  color: inherit;
+}
+
+.card__cover-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.card__cover-link:focus-visible {
+  outline: none;
+}
+
+.card:has(.card__cover-link:focus-visible) {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
 }
 
 .card__desc {

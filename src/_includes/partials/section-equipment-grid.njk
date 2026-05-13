@@ -1,4 +1,5 @@
-{# Equipment teaser grid. Reads `collections.equipment`. #}
+{# Equipment teaser grid. Each card is fully clickable and deep-links to its
+   anchor on the /equipment/ detail page. #}
 <section class="section">
   <div class="container">
     <header class="section__header">
@@ -18,11 +19,13 @@
             </div>
           {%- endif %}
           <div class="card__body">
-            <h3 class="card__title">{{ e.data.categoryTitle }}</h3>
+            <h3 class="card__title">
+              <a class="card__cover-link" href="/equipment/#{{ e.fileSlug }}"
+                >{{ e.data.categoryTitle }}</a
+              >
+            </h3>
             <p class="card__desc">{{ e.data.summary }}</p>
-            {%- if section.linkToFull %}
-              <a class="card__link" href="/equipment/#{{ e.fileSlug }}">Learn more</a>
-            {%- endif %}
+            <span class="card__link" aria-hidden="true">Learn more</span>
           </div>
         </article>
       {%- endfor %}
