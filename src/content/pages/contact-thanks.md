@@ -4,7 +4,7 @@ eleventyExcludeFromCollections: true
 title: Thanks
 description: Thanks for contacting Walker Building Corporation.
 hero:
-  poster: /assets/img/service-bmp.png
+  poster: /assets/img/service-bmp.webp
   compact: true
   eyebrow: Got it
   heading: "Thanks — message received"

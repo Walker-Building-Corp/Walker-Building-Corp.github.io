@@ -1,7 +1,7 @@
 ---
 title: Street Sweeping
 summary: Our fleet of purpose-built machines handles jobs from parking lots to large development projects. Day, nights, weekends, rain or shine — we're here to help.
-image: /assets/img/service-street-sweeping.png
+image: /assets/img/service-street-sweeping.webp
 imageAlt: Construction site being swept clean by a street sweeper
 order: 2
 ---

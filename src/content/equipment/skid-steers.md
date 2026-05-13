@@ -2,7 +2,7 @@
 categoryTitle: Skid Steers
 modelTitle: Kubota 97-2
 summary: We have a full line of skid steers ranging from mini-track loaders to heavy, large-framed machines.
-image: /assets/img/equipment-skid-steers.png
+image: /assets/img/equipment-skid-steers.webp
 imageAlt: Kubota skid steer working on a construction site
 order: 1
 ---
