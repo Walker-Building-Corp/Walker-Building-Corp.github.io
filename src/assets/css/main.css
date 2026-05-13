@@ -440,6 +440,17 @@ p {
 @media (width <= 880px) {
   .nav-toggle-label {
     display: inline-block;
+
+    /* Push the hamburger flush to the right edge of the header. */
+    margin-left: auto;
+  }
+
+  /* The empty <nav> wrapper would still claim a slot in the flex line and
+     leave a gap to the right of the hamburger; collapse it. */
+  .site-nav {
+    position: static;
+    margin: 0;
+    padding: 0;
   }
 
   .site-nav__list {
@@ -464,6 +475,7 @@ p {
   .site-nav__list a {
     padding: 1rem var(--container-pad);
     border-bottom: 1px solid var(--color-bg-alt);
+    text-align: right;
   }
 
   .nav-toggle:checked ~ .site-nav .site-nav__list {
