@@ -518,7 +518,9 @@ p {
 }
 
 .hero__inner {
-  padding: 3rem 0 4rem;
+  /* Top padding leaves room for the logo's bottom bleed (~3-5rem
+     depending on viewport) so the eyebrow / H1 never ride under it. */
+  padding: clamp(6rem, 9vw, 8rem) 0 4rem;
   width: 100%;
 }
 
