@@ -1,0 +1,15 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "ignoreFiles": [
+    "public/**",
+    "node_modules/**",
+    "src/assets/vendor/**",
+    "**/*.min.css",
+    "src/assets/css/site.css"
+  ],
+  "rules": {
+    "no-descending-specificity": null,
+    "selector-class-pattern": null,
+    "custom-property-pattern": null
+  }
+}

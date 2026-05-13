@@ -1,0 +1,509 @@
+{# Encoded URL path for oEmbed links, e.g. "/" -> "%2F", "/about/" -> "%2Fabout%2F" #}
+{%- set encodedPath = page.url | replace("/", "%2F") -%}
+{%- set fullEncodedUrl = "https%3A%2F%2Fwalkerbldgcorp.com" + encodedPath -%}
+{%- set bodyClasses %}{% if page.url == "/" %}home {% endif %}wp-singular page-template-default page page-id-{{ postId }} wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-kit-35 elementor-page elementor-page-{{ postId }}{% endset -%}
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="profile" href="https://gmpg.org/xfn/11" />
+    <title>{{ title }}</title>
+    <meta name="robots" content="max-image-preview:large" />
+    <style>
+      html.sdui-panel-open body:not(.wp-admin) {
+        margin-right: 400px;
+      }
+      html.sdui-panel-open #wpcontent,
+      html.sdui-panel-open #wpfooter {
+        margin-right: 400px;
+      }
+      html.sdui-panel-open
+        body:not(.wp-admin):not(.block-editor-page)
+        header.wp-block-template-part {
+        right: 400px;
+      }
+      #sdui-panel-placeholder {
+        display: none;
+        position: fixed;
+        right: 0;
+        top: var(--wp-admin--admin-bar--height, 32px);
+        width: 400px;
+        height: calc(100dvh - var(--wp-admin--admin-bar--height, 32px));
+        background: linear-gradient(135deg, #1a1230 0%, #110c1d 100%);
+        z-index: 99999;
+      }
+      html.sdui-panel-open #sdui-panel-placeholder {
+        display: block;
+      }
+      @media (max-width: 768px) {
+        html.sdui-panel-open body:not(.wp-admin),
+        html.sdui-panel-open #wpcontent,
+        html.sdui-panel-open #wpfooter {
+          margin-right: 0;
+        }
+        html.sdui-panel-open #sdui-panel-placeholder {
+          display: none;
+        }
+      }
+    </style>
+    <script>
+      try {
+        if (
+          !document.documentElement.classList.contains("sdui-panel-open") &&
+          localStorage.getItem("site-designer-ui-panel-open") === "true"
+        ) {
+          document.documentElement.classList.add("sdui-panel-open");
+          document.cookie = "sdui_panel_open=1;path=/;max-age=31536000;SameSite=Lax;Secure";
+          document.addEventListener("DOMContentLoaded", function () {
+            if (!document.getElementById("sdui-panel-placeholder")) {
+              var p = document.createElement("div");
+              p.id = "sdui-panel-placeholder";
+              document.body.appendChild(p);
+            }
+          });
+        }
+      } catch (e) {}
+    </script>
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="WalkerBuildingCorporation &raquo; Feed"
+      href="/feed/"
+    />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="WalkerBuildingCorporation &raquo; Comments Feed"
+      href="/comments/feed/"
+    />
+    <link
+      rel="alternate"
+      title="oEmbed (JSON)"
+      type="application/json+oembed"
+      href="/wp-json/oembed/1.0/embed?url={{ fullEncodedUrl }}"
+    />
+    <link
+      rel="alternate"
+      title="oEmbed (XML)"
+      type="text/xml+oembed"
+      href="/wp-json/oembed/1.0/embed?url={{ fullEncodedUrl }}&#038;format=xml"
+    />
+    <link rel="stylesheet" href="/assets/css/site.css" media="all" />
+    <link
+      rel="stylesheet"
+      id="wp-components-css"
+      href="/assets/vendor/css/style.min-b34e09.css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="godaddy-styles-css"
+      href="/assets/vendor/css/latest-4c56bc.css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="hello-elementor-css"
+      href="/assets/vendor/css/reset-a7dacc.css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="hello-elementor-theme-style-css"
+      href="/assets/vendor/css/theme-a7dacc.css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="hello-elementor-header-footer-css"
+      href="/assets/vendor/css/header-footer-a7dacc.css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="elementor-frontend-css"
+      href="/assets/vendor/css/frontend.min-a8717f.css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="elementor-post-35-css"
+      href="/assets/vendor/css/post-35-482e40.css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="widget-icon-list-css"
+      href="/assets/vendor/css/widget-icon-list.min-a8717f.css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="widget-image-css"
+      href="/assets/vendor/css/widget-image.min-a8717f.css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="widget-nav-menu-css"
+      href="/assets/vendor/css/widget-nav-menu.min-5fc86c.css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="widget-heading-css"
+      href="/assets/vendor/css/widget-heading.min-a8717f.css"
+      media="all"
+    />
+    {%- if hasForm %}
+    <link
+      rel="stylesheet"
+      id="widget-form-css"
+      href="/assets/vendor/css/widget-form.min-5fc86c.css"
+      media="all"
+    />
+    {%- endif %}
+    {%- for css in postCssFiles %}
+    <link
+      rel="stylesheet"
+      id="{{ css.id }}"
+      href="{{ css.href }}"
+      media="all"
+    />
+    {%- endfor %}
+    <link
+      rel="stylesheet"
+      id="elementor-post-52-css"
+      href="/assets/vendor/css/post-52-160b00.css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="elementor-post-99-css"
+      href="/assets/vendor/css/post-99-160b00.css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="elementor-gf-local-bebasneue-css"
+      href="/assets/vendor/css/bebasneue-8a7ca4.css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      id="elementor-gf-local-bevietnampro-css"
+      href="/assets/vendor/css/bevietnampro-9e1a33.css"
+      media="all"
+    />
+    <script src="/assets/vendor/js/jquery.min-f43b55.js" id="jquery-core-js"></script>
+    <script src="/assets/vendor/js/jquery-migrate.min-558973.js" id="jquery-migrate-js"></script>
+    <link rel="https://api.w.org/" href="/wp-json/" />
+    <link rel="alternate" title="JSON" type="application/json" href="/wp-json/wp/v2/pages/{{ postId }}" />
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd" />
+    <meta name="generator" content="WordPress 6.9.4" />
+    <link rel="canonical" href="{{ page.url }}" />
+    <link rel="shortlink" href="{{ page.url }}" />
+    <meta
+      name="generator"
+      content="Elementor 4.0.8; features: e_font_icon_svg, additional_custom_breakpoints; settings: css_print_method-external, google_font-enabled, font_display-swap"
+    />
+    <style>
+      .e-con.e-parent:nth-of-type(n + 4):not(.e-lazyloaded):not(.e-no-lazyload),
+      .e-con.e-parent:nth-of-type(n + 4):not(.e-lazyloaded):not(.e-no-lazyload) * {
+        background-image: none !important;
+      }
+      @media screen and (max-height: 1024px) {
+        .e-con.e-parent:nth-of-type(n + 3):not(.e-lazyloaded):not(.e-no-lazyload),
+        .e-con.e-parent:nth-of-type(n + 3):not(.e-lazyloaded):not(.e-no-lazyload) * {
+          background-image: none !important;
+        }
+      }
+      @media screen and (max-height: 640px) {
+        .e-con.e-parent:nth-of-type(n + 2):not(.e-lazyloaded):not(.e-no-lazyload),
+        .e-con.e-parent:nth-of-type(n + 2):not(.e-lazyloaded):not(.e-no-lazyload) * {
+          background-image: none !important;
+        }
+      }
+    </style>
+    <link rel="icon" href="/assets/vendor/img/cropped-Artboard-3-32x32.png" sizes="32x32" />
+    <link rel="icon" href="/assets/vendor/img/cropped-Artboard-3-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/assets/vendor/img/cropped-Artboard-3-180x180.png" />
+    <meta
+      name="msapplication-TileImage"
+      content="/wp-content/uploads/2024/03/cropped-Artboard-3-270x270.png"
+    />
+  </head>
+  <body class="{{ bodyClasses }}">
+    <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+    {% include "partials/header.njk" %}
+
+    <main id="content" class="site-main post-{{ postId }} page type-page status-publish hentry">
+      <div class="page-content">
+        {{ content | safe }}
+      </div>
+    </main>
+
+    {% include "partials/footer.njk" %}
+
+    <script type="speculationrules">
+      {
+        "prefetch": [
+          {
+            "source": "document",
+            "where": {
+              "and": [
+                { "href_matches": "/*" },
+                {
+                  "not": {
+                    "href_matches": [
+                      "/wp-*.php",
+                      "/wp-admin/*",
+                      "/wp-content/uploads/*",
+                      "/wp-content/*",
+                      "/wp-content/plugins/*",
+                      "/wp-content/themes/hello-elementor/*",
+                      "/*\\?(.+)"
+                    ]
+                  }
+                },
+                { "not": { "selector_matches": "a[rel~=\"nofollow\"]" } },
+                { "not": { "selector_matches": ".no-prefetch, .no-prefetch a" } }
+              ]
+            },
+            "eagerness": "conservative"
+          }
+        ]
+      }
+    </script>
+    <script>
+      const lazyloadRunObserver = () => {
+        const lazyloadBackgrounds = document.querySelectorAll(`.e-con.e-parent:not(.e-lazyloaded)`);
+        const lazyloadBackgroundObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                let lazyloadBackground = entry.target;
+                if (lazyloadBackground) {
+                  lazyloadBackground.classList.add("e-lazyloaded");
+                }
+                lazyloadBackgroundObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: "200px 0px 200px 0px" }
+        );
+        lazyloadBackgrounds.forEach((lazyloadBackground) => {
+          lazyloadBackgroundObserver.observe(lazyloadBackground);
+        });
+      };
+      const events = ["DOMContentLoaded", "elementor/lazyload/observe"];
+      events.forEach((event) => {
+        document.addEventListener(event, lazyloadRunObserver);
+      });
+    </script>
+    <script
+      src="/assets/vendor/js/coblocks-animation-12b2d9.js"
+      id="coblocks-animation-js"
+    ></script>
+    <script src="/assets/vendor/js/tiny-swiper-12b2d9.js" id="coblocks-tiny-swiper-js"></script>
+    <script id="coblocks-tinyswiper-initializer-js-extra">
+      var coblocksTinyswiper = {
+        carouselPrevButtonAriaLabel: "Previous",
+        carouselNextButtonAriaLabel: "Next",
+        sliderImageAriaLabel: "Image",
+      };
+      //# sourceURL=coblocks-tinyswiper-initializer-js-extra
+    </script>
+    <script
+      src="/assets/vendor/js/coblocks-tinyswiper-initializer-12b2d9.js"
+      id="coblocks-tinyswiper-initializer-js"
+    ></script>
+    <script src="/assets/vendor/js/hello-frontend-a7dacc.js" id="hello-theme-frontend-js"></script>
+    <script
+      src="/assets/vendor/js/webpack.runtime.min-a8717f.js"
+      id="elementor-webpack-runtime-js"
+    ></script>
+    <script
+      src="/assets/vendor/js/frontend-modules.min-a8717f.js"
+      id="elementor-frontend-modules-js"
+    ></script>
+    <script src="/assets/vendor/js/core.min-b37ee7.js" id="jquery-ui-core-js"></script>
+    <script id="elementor-frontend-js-before">
+      var elementorFrontendConfig = {
+        environmentMode: { edit: false, wpPreview: false, isScriptDebug: false },
+        i18n: {
+          shareOnFacebook: "Share on Facebook",
+          shareOnTwitter: "Share on Twitter",
+          pinIt: "Pin it",
+          download: "Download",
+          downloadImage: "Download image",
+          fullscreen: "Fullscreen",
+          zoom: "Zoom",
+          share: "Share",
+          playVideo: "Play Video",
+          previous: "Previous",
+          next: "Next",
+          close: "Close",
+          a11yCarouselPrevSlideMessage: "Previous slide",
+          a11yCarouselNextSlideMessage: "Next slide",
+          a11yCarouselFirstSlideMessage: "This is the first slide",
+          a11yCarouselLastSlideMessage: "This is the last slide",
+          a11yCarouselPaginationBulletMessage: "Go to slide",
+        },
+        is_rtl: false,
+        breakpoints: { xs: 0, sm: 480, md: 768, lg: 1025, xl: 1440, xxl: 1600 },
+        responsive: {
+          breakpoints: {
+            mobile: {
+              label: "Mobile Portrait",
+              value: 767,
+              default_value: 767,
+              direction: "max",
+              is_enabled: true,
+            },
+            mobile_extra: {
+              label: "Mobile Landscape",
+              value: 880,
+              default_value: 880,
+              direction: "max",
+              is_enabled: false,
+            },
+            tablet: {
+              label: "Tablet Portrait",
+              value: 1024,
+              default_value: 1024,
+              direction: "max",
+              is_enabled: true,
+            },
+            tablet_extra: {
+              label: "Tablet Landscape",
+              value: 1200,
+              default_value: 1200,
+              direction: "max",
+              is_enabled: false,
+            },
+            laptop: {
+              label: "Laptop",
+              value: 1366,
+              default_value: 1366,
+              direction: "max",
+              is_enabled: false,
+            },
+            widescreen: {
+              label: "Widescreen",
+              value: 2400,
+              default_value: 2400,
+              direction: "min",
+              is_enabled: false,
+            },
+          },
+          hasCustomBreakpoints: false,
+        },
+        version: "4.0.8",
+        is_static: false,
+        experimentalFeatures: {
+          e_font_icon_svg: true,
+          additional_custom_breakpoints: true,
+          container: true,
+          theme_builder_v2: true,
+          "hello-theme-header-footer": true,
+          "nested-elements": true,
+          global_classes_should_enforce_capabilities: true,
+          e_variables: true,
+          e_opt_in_v4_page: true,
+          e_components: true,
+          e_interactions: true,
+          e_widget_creation: true,
+          "import-export-customization": true,
+          e_pro_atomic_form: true,
+          e_pro_variables: true,
+          e_pro_interactions: true,
+        },
+        urls: {
+          assets: "https:\/\/walkerbldgcorp.com\/wp-content\/plugins\/elementor\/assets\/",
+          ajaxurl: "https:\/\/walkerbldgcorp.com\/wp-admin\/admin-ajax.php",
+          uploadUrl: "https:\/\/walkerbldgcorp.com\/wp-content\/uploads",
+        },
+        nonces: { floatingButtonsClickTracking: "6da6f4cb80", atomicFormsSendForm: "41addcf308" },
+        swiperClass: "swiper",
+        settings: { page: [], editorPreferences: [] },
+        kit: {
+          active_breakpoints: ["viewport_mobile", "viewport_tablet"],
+          global_image_lightbox: "yes",
+          lightbox_enable_counter: "yes",
+          lightbox_enable_fullscreen: "yes",
+          lightbox_enable_zoom: "yes",
+          lightbox_enable_share: "yes",
+          lightbox_title_src: "title",
+          lightbox_description_src: "description",
+          hello_header_logo_type: "title",
+          hello_header_menu_layout: "horizontal",
+          hello_footer_logo_type: "logo",
+        },
+        post: { id: {{ postId }}, title: "{{ postTitle | default(title) }}", excerpt: "", featuredImage: false },
+      };
+      //# sourceURL=elementor-frontend-js-before
+    </script>
+    <script src="/assets/vendor/js/frontend.min-a8717f.js" id="elementor-frontend-js"></script>
+    <script src="/assets/vendor/js/jquery.smartmenus.min-157612.js" id="smartmenus-js"></script>
+    <script
+      src="/assets/vendor/js/webpack-pro.runtime.min-5fc86c.js"
+      id="elementor-pro-webpack-runtime-js"
+    ></script>
+    <script src="/assets/vendor/js/hooks.min-af5f3d.js" id="wp-hooks-js"></script>
+    <script src="/assets/vendor/js/i18n.min-1cde93.js" id="wp-i18n-js"></script>
+    <script id="wp-i18n-js-after">
+      wp.i18n.setLocaleData({ "text direction\u0004ltr": ["ltr"] });
+      //# sourceURL=wp-i18n-js-after
+    </script>
+    <script id="elementor-pro-frontend-js-before">
+      var ElementorProFrontendConfig = {
+        ajaxurl: "https:\/\/walkerbldgcorp.com\/wp-admin\/admin-ajax.php",
+        nonce: "156899f313",
+        urls: {
+          assets: "https:\/\/walkerbldgcorp.com\/wp-content\/plugins\/elementor-pro\/assets\/",
+          rest: "https:\/\/walkerbldgcorp.com\/wp-json\/",
+        },
+        settings: { lazy_load_background_images: true },
+        popup: { hasPopUps: false },
+        shareButtonsNetworks: {
+          facebook: { title: "Facebook", has_counter: true },
+          twitter: { title: "Twitter" },
+          linkedin: { title: "LinkedIn", has_counter: true },
+          pinterest: { title: "Pinterest", has_counter: true },
+          reddit: { title: "Reddit", has_counter: true },
+          vk: { title: "VK", has_counter: true },
+          odnoklassniki: { title: "OK", has_counter: true },
+          tumblr: { title: "Tumblr" },
+          digg: { title: "Digg" },
+          skype: { title: "Skype" },
+          stumbleupon: { title: "StumbleUpon", has_counter: true },
+          mix: { title: "Mix" },
+          telegram: { title: "Telegram" },
+          pocket: { title: "Pocket", has_counter: true },
+          xing: { title: "XING", has_counter: true },
+          whatsapp: { title: "WhatsApp" },
+          email: { title: "Email" },
+          print: { title: "Print" },
+          "x-twitter": { title: "X" },
+          threads: { title: "Threads" },
+        },
+        facebook_sdk: { lang: "en_US", app_id: "" },
+        lottie: {
+          defaultAnimationUrl:
+            "https:\/\/walkerbldgcorp.com\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json",
+        },
+      };
+      //# sourceURL=elementor-pro-frontend-js-before
+    </script>
+    <script src="/assets/vendor/js/frontend.min-5fc86c.js" id="elementor-pro-frontend-js"></script>
+    <script
+      src="/assets/vendor/js/elements-handlers.min-5fc86c.js"
+      id="pro-elements-handlers-js"
+    ></script>
+    <!-- wp-emoji loader removed (no emoji content) -->
+    <!-- GoDaddy WSIMG analytics removed -->
+  </body>
+</html>

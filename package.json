@@ -8,15 +8,51 @@
     "dev": "tinacms dev -c \"eleventy --serve\"",
     "build": "tinacms build && eleventy",
     "build:eleventy": "eleventy",
-    "clean": "rm -rf public tina/__generated__"
+    "clean": "rm -rf public tina/__generated__",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
+    "lint:js": "eslint .",
+    "lint:css": "stylelint \"src/**/*.css\" --allow-empty-input",
+    "lint:html": "htmlhint \"src/**/*.html\" \"src/_includes/layouts/**/*.njk\"",
+    "prepare": "husky"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=20"
+  },
+  "lint-staged": {
+    "*.{js,mjs,ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml,njk}": [
+      "prettier --write"
+    ],
+    "*.css": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "src/_includes/layouts/**/*.njk": [
+      "htmlhint"
+    ],
+    "src/**/*.html": [
+      "htmlhint"
+    ]
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
     "@11ty/eleventy-img": "^5.0.0",
-    "tinacms": "^2.2.0",
-    "@tinacms/cli": "^1.7.0"
+    "@eslint/js": "^9.0.0",
+    "@tinacms/cli": "^1.7.0",
+    "eslint": "^9.0.0",
+    "globals": "^15.0.0",
+    "htmlhint": "^1.1.4",
+    "husky": "^9.1.0",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.3.0",
+    "prettier-plugin-jinja-template": "^2.0.0",
+    "stylelint": "^16.6.0",
+    "stylelint-config-standard": "^36.0.0",
+    "tinacms": "^2.2.0"
   }
 }

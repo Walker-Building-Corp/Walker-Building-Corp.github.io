@@ -1,0 +1,23 @@
+# Normalize line endings on commit; leave native in working tree.
+* text=auto eol=lf
+
+# Binary files
+*.mp4 binary
+*.webm binary
+*.mp3 binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.eot binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.pdf binary
+
+# Mirror artifacts — generated, not hand-written.
+src/content/pages/*.njk linguist-generated=true
+src/assets/vendor/** linguist-vendored=true

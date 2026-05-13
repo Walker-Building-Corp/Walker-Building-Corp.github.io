@@ -1,0 +1,24 @@
+# Build output
+public/
+
+# Dependencies
+node_modules/
+
+# Tina-generated artifacts
+tina/__generated__/
+
+# Mirrored third-party assets — never hand-edit, never format.
+src/assets/vendor/
+
+# Mirrored page templates ARE formatted (we format them after each mirror run).
+# But the *raw* HTML from Elementor lives in /tmp/walker-scrape — that's not committed.
+
+# The Elementor base layout has Jinja-interpolated values inside an inline <script>
+# (elementorFrontendConfig.post.id), which Prettier can't parse as either HTML, Jinja,
+# or JS. The layout is formatted by hand; prettier-ignore it to avoid false errors.
+src/_includes/layouts/elementor.njk
+
+# Misc
+*.min.js
+*.min.css
+package-lock.json

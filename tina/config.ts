@@ -1,10 +1,7 @@
 import { defineConfig } from "tinacms";
 
 const branch =
-  process.env.GITHUB_BRANCH ||
-  process.env.VERCEL_GIT_COMMIT_REF ||
-  process.env.HEAD ||
-  "main";
+  process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || "main";
 
 export default defineConfig({
   branch,
@@ -42,7 +39,12 @@ export default defineConfig({
           { type: "string", name: "name", label: "Company name" },
           { type: "string", name: "shortName", label: "Short name" },
           { type: "string", name: "tagline", label: "Tagline" },
-          { type: "string", name: "description", label: "Site description", ui: { component: "textarea" } },
+          {
+            type: "string",
+            name: "description",
+            label: "Site description",
+            ui: { component: "textarea" },
+          },
           { type: "string", name: "url", label: "Canonical URL" },
           { type: "string", name: "phone", label: "Phone (display)" },
           { type: "string", name: "phoneRaw", label: "Phone (tel: format, e.g. +13525551212)" },

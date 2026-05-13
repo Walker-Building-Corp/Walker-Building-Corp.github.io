@@ -14,9 +14,21 @@ This produces a pixel-identical replica of the live site, without runtime PHP, M
 
 ```sh
 npm install
-npm run dev         # Tina + Eleventy at http://localhost:8080 (admin at /admin/)
+npm run dev              # Tina + Eleventy at http://localhost:8080 (admin at /admin/)
 npm run build:eleventy   # just the static build (skips Tina)
 ```
+
+## Formatting and linting
+
+Prettier handles all formatting; ESLint, Stylelint, and HTMLHint catch correctness issues. A `husky` pre-commit hook runs `lint-staged` automatically, so only files about to be committed get checked — fast even on big changesets.
+
+```sh
+npm run format        # apply Prettier to everything
+npm run format:check  # CI-friendly: fail if anything is unformatted
+npm run lint          # run ESLint + Stylelint + HTMLHint
+```
+
+Scope: linters skip `src/assets/vendor/` (bundled third-party CSS/JS) and `public/` (build output). HTMLHint is intentionally scoped to user-authored partials (`src/_includes/**`) only — Elementor's mirrored output is formatted by Prettier but not linted, since its 1,900+ legacy markup issues aren't ours to fix. To re-format mirrored pages after re-running `scripts/mirror.py`, prettier runs automatically at the end of the script.
 
 ## Project layout
 

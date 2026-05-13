@@ -306,6 +306,14 @@ def main():
             print(f"!! {slug} failed: {e}", file=sys.stderr)
             raise
     print(f"\nDone. {len(asset_map)} assets cached.")
+    # Format the freshly-written page templates so they stay in line with the repo's Prettier config.
+    print("\nFormatting page templates with Prettier...")
+    import subprocess
+    subprocess.run(
+        ["npx", "prettier", "--write", "src/content/pages/"],
+        cwd=ROOT,
+        check=False,
+    )
 
 
 if __name__ == "__main__":

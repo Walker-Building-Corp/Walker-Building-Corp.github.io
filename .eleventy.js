@@ -8,9 +8,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/_headers": "_headers" });
   eleventyConfig.addPassthroughCopy({ "src/_redirects": "_redirects" });
 
-  eleventyConfig.addFilter("isoDate", (d) =>
-    (d instanceof Date ? d : new Date(d)).toISOString()
-  );
+  eleventyConfig.addFilter("isoDate", (d) => (d instanceof Date ? d : new Date(d)).toISOString());
 
   return {
     dir: {
