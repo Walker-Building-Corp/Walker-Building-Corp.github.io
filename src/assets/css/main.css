@@ -340,8 +340,10 @@ p {
   justify-content: space-between;
   gap: 1rem;
   padding: 0.75rem var(--container-pad);
-  max-width: var(--container-max);
-  margin: 0 auto;
+
+  /* Full browser width — logo anchors to the far left, nav to the far right.
+     No max-width / centered container so the logo can sit flush against
+     the viewport edge (modulo --container-pad). */
 }
 
 /* Oversize the logo so the top sits over the green strip above and
