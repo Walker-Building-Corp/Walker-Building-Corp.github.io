@@ -1,0 +1,75 @@
+{# Careers application form (Cloudflare Pages forms). #}
+<section id="apply" class="section section--primary">
+  <div class="container">
+    <header class="section__header">
+      <h2>Apply to work with us</h2>
+      <p class="section__intro">
+        Tell us a little about yourself. We answer most applications the same business day.
+      </p>
+    </header>
+
+    <form
+      class="form form--wide"
+      name="careers"
+      method="POST"
+      data-static-form-name="careers"
+      action="/contact/thanks/"
+      style="max-width: 720px; margin: 0 auto;"
+    >
+      <div class="form-row--cols-2">
+        <div class="form-row">
+          <label for="c-name">Full name</label>
+          <input id="c-name" type="text" name="name" required autocomplete="name" />
+        </div>
+        <div class="form-row">
+          <label for="c-phone">Phone</label>
+          <input id="c-phone" type="tel" name="phone" required autocomplete="tel" />
+        </div>
+      </div>
+      <div class="form-row--cols-2">
+        <div class="form-row">
+          <label for="c-email">Email</label>
+          <input id="c-email" type="email" name="email" required autocomplete="email" />
+        </div>
+        <div class="form-row">
+          <label for="c-location">Location</label>
+          <select id="c-location" name="location" required>
+            {%- for loc in site.locations %}
+              <option value="{{ loc }}">{{ loc }}</option>
+            {%- endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="form-row--cols-2">
+        <div class="form-row">
+          <label for="c-schedule">Schedule</label>
+          <select id="c-schedule" name="schedule" required>
+            <option value="Full time">Full time</option>
+            <option value="Part time">Part time</option>
+            <option value="Driver">Driver</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="c-position">Position</label>
+          <input
+            id="c-position"
+            type="text"
+            name="position"
+            placeholder="Operator, driver, foreman..."
+          />
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="c-message">Tell us about your experience</label>
+        <textarea id="c-message" name="message"></textarea>
+      </div>
+      <label class="honeypot" aria-hidden="true">
+        Leave this empty:
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+      </label>
+      <p>
+        <button class="btn btn--on-dark" type="submit">Submit application</button>
+      </p>
+    </form>
+  </div>
+</section>

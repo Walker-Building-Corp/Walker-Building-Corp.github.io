@@ -1,0 +1,12 @@
+{# Full-width CTA band. section: { heading, body, cta: { label, url } } #}
+<section class="section section--primary">
+  <div class="container" style="text-align: center;">
+    <h2>{{ section.heading }}</h2>
+    {%- if section.body %}<p class="section__intro">{{ section.body }}</p>{% endif %}
+    {%- if section.cta %}
+      <p style="margin-top: 1.5rem;">
+        <a class="btn btn--on-dark" href="{{ section.cta.url }}">{{ section.cta.label }}</a>
+      </p>
+    {%- endif %}
+  </div>
+</section>

@@ -1,10 +1,6 @@
 node_modules
 public
-src/assets/vendor
 tina/__generated__
-
-# Mirror artifacts (Elementor-generated HTML) — not hand-authored, don't lint.
-src/content/pages
 
 # XML sitemap, not HTML.
 src/sitemap.njk

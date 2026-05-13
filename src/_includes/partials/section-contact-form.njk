@@ -1,0 +1,87 @@
+{# Cloudflare Pages contact form. section: { heading, intro, hours } #}
+<section id="contact" class="section section--primary">
+  <div class="container">
+    <header class="section__header">
+      <h2>{{ section.heading or "Send us a message" }}</h2>
+      {%- if section.intro %}<p class="section__intro">{{ section.intro }}</p>{% endif %}
+    </header>
+
+    <div
+      style="display: grid; grid-template-columns: minmax(280px, 1fr) minmax(280px, 1.2fr); gap: 2.5rem; max-width: 1000px; margin: 0 auto;"
+    >
+      <div>
+        <ul class="info-list">
+          <li class="info-list__item">
+            <svg aria-hidden="true" viewBox="0 0 384 512">
+              <path
+                d="M172 502C27 291 0 269 0 192 0 86 86 0 192 0s192 86 192 192c0 77-27 99-172 310-10 14-30 14-40 0zM192 272c44 0 80-36 80-80s-36-80-80-80-80 36-80 80 36 80 80 80z"
+              />
+            </svg>
+            <span
+              >{{ site.address.street }}, {{ site.address.city }}, {{ site.address.state }}
+              {{ site.address.zip }}</span
+            >
+          </li>
+          <li class="info-list__item">
+            <svg aria-hidden="true" viewBox="0 0 512 512">
+              <path
+                d="M502 191c4-3 10 0 10 5v204c0 27-22 48-48 48H48c-27 0-48-21-48-48V196c0-5 6-8 10-5 22 17 52 39 154 113 21 15 57 48 92 48 36 0 72-33 92-48 102-74 132-96 154-114zM256 320c23 0 57-29 73-41 133-96 143-105 173-129 6-4 9-11 9-19v-19c0-27-21-48-48-48H48C22 64 0 86 0 112v19c0 7 3 14 9 19 31 24 41 32 173 129 17 12 50 41 74 41z"
+              />
+            </svg>
+            <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+          </li>
+          <li class="info-list__item">
+            <svg aria-hidden="true" viewBox="0 0 512 512">
+              <path
+                d="M497 362l-112-48a24 24 0 00-28 7l-50 61A371 371 0 01131 204l60-50a24 24 0 007-28L150 14A24 24 0 00123 1l-104 24A24 24 0 000 48c0 256 208 464 464 464a24 24 0 0023-19l24-104a24 24 0 00-14-27z"
+              />
+            </svg>
+            <a href="tel:{{ site.phoneRaw }}">{{ site.phone }}</a>
+          </li>
+        </ul>
+
+        {%- if section.hours %}
+          <p class="eyebrow" style="margin-top: 2rem; color: #fff;">Hours of operation</p>
+          <p style="color: rgba(255,255,255,0.9);">
+            {{ site.hours.weekday }}<br />
+            {{ site.hours.weekend }}
+          </p>
+        {%- endif %}
+      </div>
+
+      <form
+        class="form form--wide"
+        name="contact"
+        method="POST"
+        data-static-form-name="contact"
+        action="/contact/thanks/"
+      >
+        <div class="form-row--cols-2">
+          <div class="form-row">
+            <label for="name">Name</label>
+            <input id="name" type="text" name="name" required autocomplete="name" />
+          </div>
+          <div class="form-row">
+            <label for="phone">Phone</label>
+            <input id="phone" type="tel" name="phone" autocomplete="tel" />
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email" required autocomplete="email" />
+        </div>
+        <div class="form-row">
+          <label for="message">How can we help?</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <label class="honeypot" aria-hidden="true">
+          Leave this empty:
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+        </label>
+        <p>
+          <button class="btn btn--on-dark" type="submit">Send message</button>
+        </p>
+      </form>
+    </div>
+  </div>
+</section>

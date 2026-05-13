@@ -1,14 +1,42 @@
 # Walker Building Corporation
 
-Static HTML mirror of [walkerbldgcorp.com](https://walkerbldgcorp.com/) — original site is WordPress + Elementor. This rebuild serves the same rendered HTML and assets from a static host (Cloudflare Pages), edited via [Tina CMS](https://tina.io/), built with [Eleventy](https://www.11ty.dev/).
+Hand-built static marketing site. Eleventy v3 + Tina CMS, deployed to Cloudflare Pages.
 
-## Approach
+## Architecture
 
-The six page templates under `src/content/pages/*.njk` are the rendered HTML output of the live WordPress site with all absolute URLs rewritten to local `/assets/vendor/*` paths. All CSS, JS, fonts, and images were mirrored at build-out time.
+- **Single CSS file** at `src/assets/css/main.css` (~20KB) with a design system anchored on the brand palette extracted from the original Elementor build.
+- **Zero JavaScript bundle** — the only `<script>` on each page is the inline LocalBusiness JSON-LD schema.
+- **Composable section partials** in `src/_includes/partials/section-*.njk`. Each page declares its sections via frontmatter; the layout dispatches by type.
+- **Markdown content collections** for `services/` and `equipment/`. Tina-editable.
+- **Site settings** in `src/_data/site.json` — global phone/email/address/hours used by header, footer, contact form, and JSON-LD.
 
-This produces a pixel-identical replica of the live site, without runtime PHP, MySQL, or WordPress attack surface.
-
-**Tina edits sitewide values in `src/_data/site.json` (phone, email, address, hours).** Page bodies are Elementor-generated HTML and aren't field-editable — structural edits happen by editing the `.njk` files directly (or re-running the mirror).
+```
+src/
+├── _data/
+│   ├── site.json              ← Tina-editable: phone, email, address, hours
+│   └── year.js                ← provides {{ year }} to footer
+├── _includes/
+│   ├── layouts/base.njk       ← <head> + SEO + chrome + slot
+│   └── partials/
+│       ├── header.njk         ← sticky header + top contact strip + nav
+│       ├── footer.njk         ← services list + company + contact
+│       ├── hero.njk           ← optional video-bg hero
+│       ├── sections.njk       ← dispatches sections array by type
+│       └── section-*.njk      ← one file per section type
+├── content/
+│   ├── pages/                 ← 7 page markdowns (frontmatter-driven)
+│   ├── services/              ← 4 service markdowns (collection)
+│   └── equipment/             ← 4 equipment markdowns (collection)
+├── assets/
+│   ├── css/main.css           ← single stylesheet
+│   ├── fonts/                 ← Bebas Neue + Be Vietnam Pro woff2
+│   ├── img/                   ← logos, service/equipment photos
+│   └── video/                 ← 6 hero background loops (~18MB)
+├── _headers, _redirects       ← Cloudflare Pages config
+├── robots.txt
+└── sitemap.njk                ← auto-generated sitemap.xml
+tina/config.ts                 ← Tina schema (Pages, Services, Equipment, Settings)
+```
 
 ## Local development
 
@@ -18,52 +46,56 @@ npm run dev              # Tina + Eleventy at http://localhost:8080 (admin at /a
 npm run build:eleventy   # just the static build (skips Tina)
 ```
 
-## Formatting and linting
+## Page composition (frontmatter)
 
-Prettier handles all formatting; ESLint, Stylelint, and HTMLHint catch correctness issues. A `husky` pre-commit hook runs `lint-staged` automatically, so only files about to be committed get checked — fast even on big changesets.
+Each page in `src/content/pages/*.md` is composed from:
+
+1. A `hero` object: `{ video, poster, eyebrow, heading, subhead, ctas, compact }`
+2. A `sections` array — each entry has a `type` and optional `heading`/`intro`/`body`/`cta`.
+
+Available section types:
+
+| Type               | Renders                                        |
+| ------------------ | ---------------------------------------------- |
+| `services-grid`    | card grid pulling from `collections.services`  |
+| `services-detail`  | full per-service rows with image + body        |
+| `equipment-grid`   | card grid pulling from `collections.equipment` |
+| `equipment-detail` | full per-equipment rows                        |
+| `about-summary`    | centered prose block + optional CTA            |
+| `cta-band`         | full-width primary-color band with single CTA  |
+| `contact-form`     | Cloudflare Pages contact form + info column    |
+| `careers-form`     | Cloudflare Pages job application form          |
+
+To add a new section type: create `src/_includes/partials/section-<type>.njk`, then add a branch to `partials/sections.njk` and the type to Tina's section options in `tina/config.ts`.
+
+## Forms
+
+`contact` and `careers` form names are wired for Cloudflare Pages forms (`data-static-form-name="contact"` / `"careers"`). Both POST to `/contact/thanks/` on success.
+
+## Linting + formatting
+
+Prettier, ESLint, Stylelint, HTMLHint, with a husky pre-commit hook running `lint-staged`.
 
 ```sh
-npm run format        # apply Prettier to everything
-npm run format:check  # CI-friendly: fail if anything is unformatted
-npm run lint          # run ESLint + Stylelint + HTMLHint
+npm run format         # apply Prettier to everything
+npm run format:check   # CI-friendly: fail if anything is unformatted
+npm run lint           # run all linters
 ```
 
-Scope: linters skip `src/assets/vendor/` (bundled third-party CSS/JS) and `public/` (build output). HTMLHint is intentionally scoped to user-authored partials (`src/_includes/**`) only — Elementor's mirrored output is formatted by Prettier but not linted, since its 1,900+ legacy markup issues aren't ours to fix. To re-format mirrored pages after re-running `scripts/mirror.py`, prettier runs automatically at the end of the script.
-
-## Project layout
-
-```
-src/
-├── _data/site.json          ← edited by Tina (sitewide phone/email/address)
-├── _headers, _redirects     ← Cloudflare Pages config
-├── assets/vendor/           ← mirrored CSS, JS, fonts, images
-├── content/pages/*.njk      ← the 6 page templates (rendered Elementor HTML)
-├── robots.txt
-└── sitemap.njk              ← auto-generated sitemap
-tina/config.ts               ← Tina schema (site settings only)
-```
+`src/_includes/layouts/base.njk` is `.prettierignore`d because it has Jinja interpolation inside the inline JSON-LD `<script>` block (Prettier can't reconcile).
 
 ## Deployment (Cloudflare Pages)
 
-1. Push repo to GitHub.
-2. Cloudflare Pages → connect repo → build command `npm run build`, output dir `public`.
-3. Set env vars `NEXT_PUBLIC_TINA_CLIENT_ID` and `TINA_TOKEN` from Tina Cloud.
+1. Push to GitHub `main`.
+2. Cloudflare Pages → connect repo, build command `npm run build`, output dir `public`.
+3. Env vars: `NEXT_PUBLIC_TINA_CLIENT_ID` and `TINA_TOKEN` from Tina Cloud.
+4. Forms auto-detected via the `data-static-form-name` attribute.
 
-## Re-mirroring the live site
+## SEO
 
-If the WordPress site changes upstream and you want to pull those changes in, re-run the mirror script:
-
-```sh
-python3 /tmp/walker-build.py
-npm run build:eleventy
-```
-
-The script lives in `scripts/mirror.py` (TODO: move it from /tmp into the repo).
-
-## Notes
-
-- Output is ~36MB on disk (six background-video loops re-encoded to ~1.5 Mbps H.264, no audio, plus Elementor's bundled CSS/JS). All assets are served with `Cache-Control: immutable` via `_headers`.
-- The original videos were 1080p / ~22 Mbps / 13–23s. They've been re-encoded at 1.5 Mbps using `libx264 -preset slow -an -movflags +faststart`. To re-mirror and re-encode in one shot: re-run `python3 scripts/mirror.py`, then run the ffmpeg loop in `scripts/encode-videos.sh` (TODO: extract that script).
-- The contact form has been rewired to use Cloudflare Pages forms (`data-static-form-name="contact"`). Submissions land in the Cloudflare Pages dashboard. Successful submissions redirect to `/contact/thanks/`.
-- Live site references a staging hostname (`bk2.03c.myftpupload.com`) — all such URLs are rewritten during the mirror.
-- The mirror script also strips GoDaddy WSIMG analytics scripts and the WordPress emoji loader, so zero third-party assets are loaded by the built site.
+- LocalBusiness JSON-LD in `base.njk`, sourced from `site.json` (phone, address, geo, hours, areas served).
+- Per-page `<title>` and `<meta name="description">`.
+- Open Graph + Twitter card tags.
+- Canonical URL.
+- `sitemap.xml` auto-generated.
+- `robots.txt` with sitemap reference.

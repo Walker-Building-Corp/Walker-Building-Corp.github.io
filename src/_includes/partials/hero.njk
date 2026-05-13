@@ -1,0 +1,53 @@
+{#
+  Hero partial. Inputs (from page frontmatter):
+    hero.video    - path to mp4 (optional)
+    hero.poster   - path to fallback image (recommended when video is set)
+    hero.eyebrow  - small uppercase label above the H1 (optional)
+    hero.heading  - H1 text (required)
+    hero.subhead  - secondary line under H1 (optional)
+    hero.ctas     - array of { label, url, style: "primary"|"ghost"|"on-dark" }
+    hero.compact  - boolean: smaller hero (used on interior pages)
+#}
+{%- set heroClass = "hero" -%}
+{%- if hero.compact %}{% set heroClass = heroClass + " hero--compact" %}{% endif -%}
+<section class="{{ heroClass }}">
+  {%- if hero.video or hero.poster %}
+    <div class="hero__media" aria-hidden="true">
+      {%- if hero.video %}
+        <video
+          autoplay
+          muted
+          playsinline
+          loop
+          preload="metadata"
+          {% if hero.poster %}poster="{{ hero.poster }}"{% endif %}
+        >
+          <source src="{{ hero.video }}" type="video/mp4" />
+        </video>
+      {%- elif hero.poster %}
+        <img src="{{ hero.poster }}" alt="" />
+      {%- endif %}
+    </div>
+  {%- endif %}
+
+  <div class="hero__inner">
+    <div class="container">
+      {%- if hero.eyebrow %}
+        <p class="eyebrow">{{ hero.eyebrow }}</p>
+      {%- endif %}
+      <h1>{{ hero.heading }}</h1>
+      {%- if hero.subhead %}
+        <p class="hero__subhead">{{ hero.subhead }}</p>
+      {%- endif %}
+      {%- if hero.ctas %}
+        <div class="btn-row">
+          {%- for cta in hero.ctas %}
+            <a class="btn btn--{{ cta.style or 'primary' }}" href="{{ cta.url }}"
+              >{{ cta.label }}</a
+            >
+          {%- endfor %}
+        </div>
+      {%- endif %}
+    </div>
+  </div>
+</section>

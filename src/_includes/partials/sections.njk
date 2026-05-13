@@ -1,0 +1,20 @@
+{# Renders the `sections` array from page frontmatter. Dispatches by type. #}
+{%- for section in sections %}
+  {%- if section.type == "services-grid" %}
+    {% include "partials/section-services-grid.njk" %}
+  {%- elif section.type == "services-detail" %}
+    {% include "partials/section-services-detail.njk" %}
+  {%- elif section.type == "equipment-grid" %}
+    {% include "partials/section-equipment-grid.njk" %}
+  {%- elif section.type == "equipment-detail" %}
+    {% include "partials/section-equipment-detail.njk" %}
+  {%- elif section.type == "about-summary" %}
+    {% include "partials/section-about-summary.njk" %}
+  {%- elif section.type == "cta-band" %}
+    {% include "partials/section-cta-band.njk" %}
+  {%- elif section.type == "contact-form" %}
+    {% include "partials/section-contact-form.njk" %}
+  {%- elif section.type == "careers-form" %}
+    {% include "partials/section-careers-form.njk" %}
+  {%- endif %}
+{%- endfor %}

@@ -1,0 +1,26 @@
+{# Detailed per-service rows used on /services/ page. Alternates image side. #}
+<section class="section">
+  <div class="container">
+    {%- for s in collections.services %}
+      {%- set rowClass = "detail-row" -%}
+      {%- if loop.index0 % 2 == 1 %}{% set rowClass = rowClass + " detail-row--reversed" %}{% endif -%}
+      <article id="{{ s.fileSlug }}" class="{{ rowClass }}">
+        <div class="detail-row__media">
+          <img
+            src="{{ s.data.image }}"
+            alt="{{ s.data.imageAlt or s.data.title }}"
+            loading="lazy"
+          />
+        </div>
+        <div class="detail-row__body">
+          <h2>{{ s.data.title }}</h2>
+          <p>{{ s.data.summary }}</p>
+          {{ s.templateContent | safe }}
+          <p>
+            <a class="btn btn--primary" href="#contact">Get Started</a>
+          </p>
+        </div>
+      </article>
+    {%- endfor %}
+  </div>
+</section>

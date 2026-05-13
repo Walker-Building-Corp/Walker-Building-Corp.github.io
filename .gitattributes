@@ -18,6 +18,3 @@
 *.ico binary
 *.pdf binary
 
-# Mirror artifacts — generated, not hand-written.
-src/content/pages/*.njk linguist-generated=true
-src/assets/vendor/** linguist-vendored=true

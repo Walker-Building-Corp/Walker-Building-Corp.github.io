@@ -1,0 +1,31 @@
+{# Equipment teaser grid. Reads `collections.equipment`. #}
+<section class="section">
+  <div class="container">
+    <header class="section__header">
+      <h2>{{ section.heading or "Our Equipment" }}</h2>
+      {%- if section.intro %}<p class="section__intro">{{ section.intro }}</p>{% endif %}
+    </header>
+    <div class="card-grid">
+      {%- for e in collections.equipment %}
+        <article class="card">
+          {%- if e.data.image %}
+            <div class="card__image">
+              <img
+                src="{{ e.data.image }}"
+                alt="{{ e.data.imageAlt or e.data.categoryTitle }}"
+                loading="lazy"
+              />
+            </div>
+          {%- endif %}
+          <div class="card__body">
+            <h3 class="card__title">{{ e.data.categoryTitle }}</h3>
+            <p class="card__desc">{{ e.data.summary }}</p>
+            {%- if section.linkToFull %}
+              <a class="card__link" href="/equipment/#{{ e.fileSlug }}">Learn more</a>
+            {%- endif %}
+          </div>
+        </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,16 @@
+{# About summary block, used on home + about. Body text comes from section.body. #}
+<section class="section">
+  <div class="container">
+    <header class="section__header">
+      <h2>{{ section.heading or "About Us" }}</h2>
+    </header>
+    <div class="prose">
+      {%- if section.body %}{{ section.body | safe }}{% endif %}
+      {%- if section.cta %}
+        <p style="text-align: center; margin-top: 2rem;">
+          <a class="btn btn--primary" href="{{ section.cta.url }}">{{ section.cta.label }}</a>
+        </p>
+      {%- endif %}
+    </div>
+  </div>
+</section>

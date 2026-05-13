@@ -1,0 +1,30 @@
+{# Services card grid. Reads `collections.services` (sorted by `order`).
+   Section frontmatter: { type: "services-grid", heading: "...", intro: "..." } #}
+<section class="section section--alt">
+  <div class="container">
+    <header class="section__header">
+      <h2>{{ section.heading or "Our Services" }}</h2>
+      {%- if section.intro %}<p class="section__intro">{{ section.intro }}</p>{% endif %}
+    </header>
+    <div class="card-grid">
+      {%- for s in collections.services %}
+        <article class="card">
+          {%- if s.data.image %}
+            <div class="card__image">
+              <img
+                src="{{ s.data.image }}"
+                alt="{{ s.data.imageAlt or s.data.title }}"
+                loading="lazy"
+              />
+            </div>
+          {%- endif %}
+          <div class="card__body">
+            <h3 class="card__title">{{ s.data.title }}</h3>
+            <p class="card__desc">{{ s.data.summary }}</p>
+            <a class="card__link" href="/services/#{{ s.fileSlug }}">Learn more</a>
+          </div>
+        </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>

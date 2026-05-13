@@ -1,0 +1,27 @@
+{# Detailed equipment listing on /equipment/ page. #}
+<section class="section">
+  <div class="container">
+    {%- if section.intro %}
+      <p class="prose" style="margin-bottom: 2.5rem;">{{ section.intro }}</p>
+    {%- endif %}
+    {%- for e in collections.equipment %}
+      {%- set rowClass = "detail-row" -%}
+      {%- if loop.index0 % 2 == 1 %}{% set rowClass = rowClass + " detail-row--reversed" %}{% endif -%}
+      <article id="{{ e.fileSlug }}" class="{{ rowClass }}">
+        <div class="detail-row__media">
+          <img
+            src="{{ e.data.image }}"
+            alt="{{ e.data.imageAlt or e.data.categoryTitle }}"
+            loading="lazy"
+          />
+        </div>
+        <div class="detail-row__body">
+          <p class="eyebrow">{{ e.data.categoryTitle }}</p>
+          <h2>{{ e.data.modelTitle }}</h2>
+          <p>{{ e.data.summary }}</p>
+          {{ e.templateContent | safe }}
+        </div>
+      </article>
+    {%- endfor %}
+  </div>
+</section>
