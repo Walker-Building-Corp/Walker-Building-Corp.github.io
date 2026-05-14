@@ -24,6 +24,8 @@
     "schemaSpec": "Mo,Tu,We,Th,Fr 08:00-16:00"
   },
   "locations": ["Umatilla", "Palm Coast", "Moore Haven"],
+  "ogImage": "/assets/img/logo.webp",
+  "priceRange": "$$",
   "nav": [
     { "label": "Home", "url": "/" },
     { "label": "About", "url": "/about/" },
