@@ -1,6 +1,6 @@
 ---
-title: Walker Building Corporation
-description: Mid-sized contractor specializing in erosion control, BMP management, street sweeping, concrete washouts, and debris removal across central Florida.
+title: Walker Building Corporation — Erosion Control & Stormwater Management
+description: Central Florida contractor specializing in erosion control, BMP management, street sweeping, concrete washouts, and debris removal for construction sites across the I-4 corridor.
 hero:
   video: /assets/video/hero-home.mp4
   eyebrow: Walker Building Corporation

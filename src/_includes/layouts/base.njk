@@ -8,7 +8,8 @@
     {%- set pageDesc = description or site.description -%}
     {%- set absUrl = site.url + page.url -%}
     {%- set resolvedOgImage = ogImage or site.ogImage -%}
-    <title>{% if title %}{{ title }} | {% endif %}{{ site.shortName or site.name }}</title>
+    {%- set brandSuffix = site.shortName or site.name -%}
+    <title>{% if page.url == '/' %}{{ title or site.name }}{% elif title %}{{ title }} | {{ brandSuffix }}{% else %}{{ brandSuffix }}{% endif %}</title>
     <meta name="description" content="{{ pageDesc }}" />
     <link rel="canonical" href="{{ absUrl }}" />
 
