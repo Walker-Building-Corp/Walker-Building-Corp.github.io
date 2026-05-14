@@ -1,11 +1,11 @@
 ---
-title: About
+title: About Walker Building — Central Florida Erosion Control Contractor
 description: Walker Building Corporation is a central Florida contractor specializing in erosion control, BMP management, street sweeping, and site cleanup.
 hero:
   video: /assets/video/hero-about.mp4
   compact: true
   eyebrow: About
-  heading: "Sites you can trust to pass inspection"
+  heading: "Central Florida erosion control crews you can trust to pass inspection"
 sections:
   - type: "about-summary"
     heading: "Who we are"

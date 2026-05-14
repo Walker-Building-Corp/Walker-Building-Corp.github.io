@@ -1,6 +1,6 @@
 ---
-title: Contact
-description: Get a quote from Walker Building Corporation. Call (352) 771-2651 or send us a message.
+title: Contact Walker Building — Quotes for Central Florida Sites
+description: Get a quote from Walker Building Corporation. Call (352) 771-2651 or send us a message — we serve construction sites across central Florida.
 hero:
   video: /assets/video/hero-contact.mp4
   compact: true

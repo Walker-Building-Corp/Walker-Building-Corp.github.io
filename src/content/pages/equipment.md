@@ -1,11 +1,11 @@
 ---
-title: Equipment
-description: Skid steers, excavators, sweepers, and dump trucks — Walker Building Corp owns the fleet to take on large project requests.
+title: Construction Equipment Fleet — Central Florida
+description: Skid steers, excavators, sweepers, and dump trucks — Walker Building Corp owns the fleet to take on large project requests across central Florida.
 hero:
   video: /assets/video/hero-equipment.mp4
   compact: true
   eyebrow: Equipment
-  heading: "The right machine for the job"
+  heading: "Owned construction equipment fleet for Central Florida sites"
 sections:
   - type: "equipment-detail"
     intro: "In order to get the job done right, Walker Building Corporation uses only the best equipment. Our entire crew of operators is specially trained on each piece of equipment to ensure safety and high-quality work."
