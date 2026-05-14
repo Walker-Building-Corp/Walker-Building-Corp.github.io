@@ -470,12 +470,18 @@ p {
     transition:
       transform var(--transition),
       opacity var(--transition);
+    text-align: right;
   }
 
   .site-nav__list a {
     padding: 1rem var(--container-pad);
     border-bottom: 1px solid var(--color-bg-alt);
-    text-align: right;
+  }
+
+  .site-nav__list a:hover,
+  .site-nav__list a:focus-visible,
+  .site-nav__list a[aria-current="page"] {
+    border-bottom-color: var(--color-bg-alt);
   }
 
   .nav-toggle:checked ~ .site-nav .site-nav__list {
