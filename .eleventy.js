@@ -1,3 +1,5 @@
+import { execSync } from "node:child_process";
+
 export default function (eleventyConfig) {
   // Static-asset passthrough.
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
@@ -19,6 +21,20 @@ export default function (eleventyConfig) {
 
   // Filters.
   eleventyConfig.addFilter("isoDate", (d) => (d instanceof Date ? d : new Date(d)).toISOString());
+
+  // Returns the file's last git-commit ISO timestamp for stable sitemap lastmod.
+  // Falls back to the page's own date if the file isn't tracked.
+  eleventyConfig.addFilter("gitLastModified", function (inputPath) {
+    try {
+      const iso = execSync(`git log -1 --format=%cI -- "${inputPath}"`, {
+        encoding: "utf8",
+      }).trim();
+      if (iso) return iso;
+    } catch {
+      // fall through
+    }
+    return new Date().toISOString();
+  });
 
   return {
     dir: {

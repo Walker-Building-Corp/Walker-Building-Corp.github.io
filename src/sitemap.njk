@@ -9,7 +9,7 @@ eleventyExcludeFromCollections: true
     {%- if p.url and p.data.permalink !== false and not p.data.eleventyExcludeFromCollections %}
       <url>
         <loc>{{ site.url }}{{ p.url }}</loc>
-        <lastmod>{{ p.date | isoDate }}</lastmod>
+        <lastmod>{{ p.inputPath | gitLastModified }}</lastmod>
         <changefreq>monthly</changefreq>
       </url>
     {%- endif %}
