@@ -7,19 +7,26 @@
     {%- set pageTitle = title or site.name -%}
     {%- set pageDesc = description or site.description -%}
     {%- set absUrl = site.url + page.url -%}
+    {%- set resolvedOgImage = ogImage or site.ogImage -%}
     <title>{% if title %}{{ title }} | {% endif %}{{ site.shortName or site.name }}</title>
     <meta name="description" content="{{ pageDesc }}" />
     <link rel="canonical" href="{{ absUrl }}" />
 
-    <meta property="og:type" content="{% if page.url == '/' %}website{% else %}article{% endif %}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:title" content="{{ pageTitle }}" />
     <meta property="og:description" content="{{ pageDesc }}" />
     <meta property="og:url" content="{{ absUrl }}" />
     <meta property="og:site_name" content="{{ site.name }}" />
-    {%- if ogImage %}
-    <meta property="og:image" content="{{ site.url }}{{ ogImage }}" />
+    {%- if resolvedOgImage %}
+    <meta property="og:image" content="{{ site.url }}{{ resolvedOgImage }}" />
     {%- endif %}
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ pageTitle }}" />
+    <meta name="twitter:description" content="{{ pageDesc }}" />
+    {%- if resolvedOgImage %}
+    <meta name="twitter:image" content="{{ site.url }}{{ resolvedOgImage }}" />
+    {%- endif %}
     <meta name="theme-color" content="#668E77" />
 
     <link rel="icon" href="/assets/img/logo-32.png" type="image/png" sizes="32x32" />
