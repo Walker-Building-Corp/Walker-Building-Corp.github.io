@@ -14,7 +14,10 @@
               <img
                 src="{{ s.data.image }}"
                 alt="{{ s.data.imageAlt or s.data.title }}"
+                width="{{ s.data.imageWidth }}"
+                height="{{ s.data.imageHeight }}"
                 loading="lazy"
+                decoding="async"
               />
             </div>
           {%- endif %}

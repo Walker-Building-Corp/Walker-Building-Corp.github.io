@@ -12,7 +12,10 @@
           <img
             src="{{ e.data.image }}"
             alt="{{ e.data.imageAlt or e.data.categoryTitle }}"
+            width="{{ e.data.imageWidth }}"
+            height="{{ e.data.imageHeight }}"
             loading="lazy"
+            decoding="async"
           />
         </div>
         <div class="detail-row__body">

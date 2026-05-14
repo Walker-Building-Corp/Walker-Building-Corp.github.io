@@ -4,6 +4,8 @@ modelTitle: Bobcat E145
 summary: Compact to medium-sized excavators with multiple attachments. From excavation to debris removal and everything in between, we can do it all.
 image: /assets/img/equipment-excavators.webp
 imageAlt: Bobcat excavator on a construction site
+imageWidth: 796
+imageHeight: 478
 order: 2
 ---
 
