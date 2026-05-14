@@ -20,3 +20,7 @@ src/sitemap.njk
 *.min.js
 *.min.css
 package-lock.json
+
+# SEO audit report contains illustrative JSON snippets with `...` placeholders
+# that prettier can't parse as JSON.
+SEO-AUDIT-*.md
