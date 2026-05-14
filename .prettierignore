@@ -11,6 +11,11 @@ tina/__generated__/
 # Prettier can't parse that as either Jinja or JSON, so we hand-format it.
 src/_includes/layouts/base.njk
 
+# sitemap.njk must have <?xml ?> on the line immediately after the
+# frontmatter --- delimiter; prettier insists on a blank line between them,
+# which produces leading whitespace before the XML declaration.
+src/sitemap.njk
+
 # Misc
 *.min.js
 *.min.css
