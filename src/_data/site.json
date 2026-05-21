@@ -1,10 +1,39 @@
 {
+  "ogImage": "/assets/img/logo.webp",
+  "priceRange": "$$",
+  "nav": [
+    {
+      "label": "Home",
+      "url": "/"
+    },
+    {
+      "label": "About",
+      "url": "/about/"
+    },
+    {
+      "label": "Services",
+      "url": "/services/"
+    },
+    {
+      "label": "Equipment",
+      "url": "/equipment/"
+    },
+    {
+      "label": "Careers",
+      "url": "/careers/"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact/"
+    }
+  ],
+  "social": [],
   "name": "Walker Building Corporation",
   "shortName": "Walker Building Corp",
   "tagline": "Leader in Erosion Control & Stormwater Management",
   "description": "Walker Building Corporation provides erosion control, BMP management, street sweeping, concrete washouts, and debris removal across central Florida.",
   "url": "https://walkerbldgcorp.com",
-  "phone": "(352) 771-2651",
+  "phone": "(352) 771-2652",
   "phoneRaw": "+13527712651",
   "email": "Info@WalkerBldgCorp.com",
   "address": {
@@ -23,16 +52,9 @@
     "weekend": "Saturday & Sunday: Closed",
     "schemaSpec": "Mo,Tu,We,Th,Fr 08:00-16:00"
   },
-  "locations": ["Umatilla", "Palm Coast", "Moore Haven"],
-  "ogImage": "/assets/img/logo.webp",
-  "priceRange": "$$",
-  "nav": [
-    { "label": "Home", "url": "/" },
-    { "label": "About", "url": "/about/" },
-    { "label": "Services", "url": "/services/" },
-    { "label": "Equipment", "url": "/equipment/" },
-    { "label": "Careers", "url": "/careers/" },
-    { "label": "Contact", "url": "/contact/" }
-  ],
-  "social": []
+  "locations": [
+    "Umatilla",
+    "Palm Coast",
+    "Moore Haven"
+  ]
 }
