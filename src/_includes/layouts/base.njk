@@ -11,6 +11,7 @@
     {%- set brandSuffix = site.shortName or site.name -%}
     <title>{% if page.url == '/' %}{{ title or site.name }}{% elif title %}{{ title }} | {{ brandSuffix }}{% else %}{{ brandSuffix }}{% endif %}</title>
     <meta name="description" content="{{ pageDesc }}" />
+    {%- if noindex %}<meta name="robots" content="noindex, nofollow" />{% endif %}
     <link rel="canonical" href="{{ absUrl }}" />
 
     <meta property="og:type" content="website" />
