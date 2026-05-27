@@ -37,6 +37,7 @@
     <link rel="preload" href="/assets/fonts/bebasneue-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/assets/fonts/bevietnampro-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/assets/css/main.css" />
+    {%- if headExtra %}{{ headExtra | safe }}{% endif %}
 
     <script type="application/ld+json">
       {
